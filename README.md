@@ -43,7 +43,23 @@ you will find a JSON report for JGiven output:
 ## GitHub Setup
 - Create new repository with the application
 - Initialise local repository in the project directory
+```
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:ConorSM/calculator_test_cicd_pipeline.git
+git push -u origin main
+```
+
 - Add a "dev" branch to the repository
+- Add "dev branch to local repository
+```
+git checkout -b dev
+git add .
+git commit -m "first commit"
+git push -u origin dev
+```
 - Generate SSH key
 ```
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
