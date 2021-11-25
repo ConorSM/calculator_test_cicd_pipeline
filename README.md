@@ -38,3 +38,58 @@ you will find a JSON report for JGiven output:
 
 `jgiven-reports/TestCalculatorJgiven.json`
 
+# Creating a CICD Pipeline Using Jenkins
+
+## GitHub Setup
+- Create new repository with the application
+- Initialise local repository in the project directory
+- Add a "dev" branch to the repository
+- Generate SSH key
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+- add public key to the specific repository in the settings
+- Create Webhook
+  - Go to settings of repository and select webhooks
+  - Enter Jenkins url and add "/github-webhook/" to the end
+
+## Jenkins Setup
+
+### CI Job
+- Create new item
+- Create name and select "freestyle project"
+- Add description
+- Check "Discard old builds"
+  - keep a max of 3 builds
+- Check "GitHub project"
+  - Add the https url of github repository with the project
+- Keep Office 365 Connector as default
+- Under Source Code Management select "Git"
+  - Enter ssh url of repository
+  - Create credentials using ssh key (add the private key)
+- Branches to build - enter */dev 
+- Under Build Triggers select "GitHub hook trigger for GITScm polling"
+- Keep Build Environment as default
+- Under Build select Execute shell
+  - add ls and pwd
+- Select Invoke Gradle script and select "Use Gradle Wrapper"
+  - Make gradlew executable
+  - For "Tasks" enter "test"
+- Post-build Actions
+  - after merge job is complete add it to the "build other projects" and select Trigger only if build is stable
+
+### Merge job
+- Create new item as before
+- Keep max of 3 builds
+- Enter https url of github repository
+- add ssh link to source code management 
+  - branches to build - */dev
+  - Additional behaviours - Merge before build
+    - name of repository - origin
+    - Branch to merge to - main (or master)
+    - Merge strategy - default
+    - Fast-forward mode --ff
+- Post-build Actions
+  - Merge Results
+  - Editable Email Notificaton
+    - Enter email address in project recipient list under "$DEFAULT_RECIPIENTS"
