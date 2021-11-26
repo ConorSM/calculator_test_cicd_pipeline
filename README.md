@@ -110,5 +110,24 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
   - Editable Email Notificaton
     - Enter email address in project recipient list under "$DEFAULT_RECIPIENTS"
 
+### Docker job
+- max 3 builds
+- http of github repository
+- ssh to source code management
+- Branch specifier - */main
+- Build environment
+  - Delete workspace before build starts
+- Execute shell
+```
+sudo docker build . -t conorsm/calc_jenkins
+```
+- Add to docker build and publish to build section
+  - name of repository
+- Docker Host URI
+```
+unix:///var/run/docker.sock
+```
+- Registry credentials
+  - token from dockerhub as password
 
 test
