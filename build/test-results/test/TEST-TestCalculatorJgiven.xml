@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TestCalculatorJgiven" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-24T21:42:46" hostname="Kierans-MBP-2" time="0.416">
+<testsuite name="TestCalculatorJgiven" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-25T15:53:22" hostname="LAPTOP-3625PKJI" time="0.463">
   <properties/>
-  <testcase name="testCalculatorEdition()" classname="TestCalculatorJgiven" time="0.416"/>
+  <testcase name="testCalculatorEdition()" classname="TestCalculatorJgiven" time="0.463"/>
   <system-out><![CDATA[
 Test Class: TestCalculatorJgiven
 
